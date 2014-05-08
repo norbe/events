@@ -1,0 +1,12 @@
+events:
+	optimize: no
+	validate: no
+	autowire: yes
+	subscribers:
+		
+
+services:
+	leaf: FregisTests\Events\LeafClass
+	subscriber:
+		class: FregisTests\Events\InheritSubscriber
+		tags: [kdyby.subscriber]

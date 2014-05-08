@@ -1,0 +1,25 @@
+{
+    "name": "fregis/events",
+    "description": "Events for Nette Framework base on kdyby/events",
+    "require": {
+        "kdyby/events": "@dev",
+        "nette/tester": "@dev"
+    },
+    "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
+	"autoload": {
+		"psr-0": {
+			"Fregis\\Events\\": "src/"
+		}
+	},
+    "authors": [
+        {
+            "name": "Karel Hák",
+            "email": "karel.hak@fregis.cz"
+        }
+    ],
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0-dev"
+		}
+	}
+}
