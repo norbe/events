@@ -2,7 +2,7 @@
     "name": "fregis/events",
     "description": "Events for Nette Framework base on kdyby/events",
     "require": {
-        "kdyby/events": "@dev",
+        "kdyby/events": "2.1.*",
         "nette/tester": "@dev"
     },
     "license": ["BSD-3-Clause", "GPL-2.0", "GPL-3.0"],
