@@ -29,12 +29,14 @@ class EventsExtension extends Events\DI\EventsExtension
 			$declaringClassName = $property->getDeclaringClass()->getName();
 			do {
 				$currentClassName = $currentClass->getName();
-				$def->addSetup('$' . $name, array(
-					new Nette\DI\Statement($this->prefix('@manager') . '::createEvent', array(
-						array($currentClassName, $name),
-						new Code\PhpLiteral('$service->' . $name)
-					))
-				));
+				if(!$currentClass->isAbstract()) {
+					$def->addSetup('$' . $name, array(
+						new Nette\DI\Statement($this->prefix('@manager') . '::createEvent', array(
+							array($currentClassName, $name),
+							new Code\PhpLiteral('$service->' . $name)
+						))
+					));
+				}
 				$currentClass = $currentClass->getParentClass();
 			} while ($declaringClassName != $currentClassName);
 		}
