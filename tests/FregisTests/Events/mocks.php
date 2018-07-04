@@ -14,8 +14,9 @@ use Kdyby;
 use Nette;
 
 
-class ParentClass extends Nette\Object
-{
+class ParentClass {
+	use \Nette\SmartObject;
+	
 	public $onCreate;
 
 	public function create() {
