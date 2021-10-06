@@ -2,7 +2,7 @@
     "name": "fregis/events",
     "description": "Events for Nette Framework base on kdyby/events",
     "require": {
-        "kdyby/events": "~3.1"
+        "kdyby/events": "~3.2"
 	},
 	"require-dev": {
         "nette/tester": "@dev"
@@ -21,7 +21,7 @@
     ],
 	"extra": {
 		"branch-alias": {
-			"dev-master": "2.0-dev"
+			"dev-master": "3.0-dev"
 		}
 	}
 }
