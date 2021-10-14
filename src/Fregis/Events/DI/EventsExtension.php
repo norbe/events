@@ -18,9 +18,9 @@ use Nette\PhpGenerator as Code;
  */
 class EventsExtension extends Events\DI\EventsExtension
 {
-	protected function bindEventProperties(Nette\DI\ServiceDefinition $def, Nette\Reflection\ClassType $class)
+	protected function bindEventProperties(Nette\DI\Definitions\Definition $def, \ReflectionClass $class)
 	{		
-		foreach ($class->getProperties(Nette\Reflection\Property::IS_PUBLIC) as $property) {
+		foreach ($class->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
 			if (!preg_match('#^on[A-Z]#', $name = $property->getName())) {
 				continue 1;
 			}
