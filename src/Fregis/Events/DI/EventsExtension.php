@@ -11,7 +11,8 @@ namespace Fregis\Events\DI;
 
 use Kdyby\Events;
 use Nette;
-use Nette\PhpGenerator as Code;
+use Nette\DI\Definitions\FactoryDefinition;
+use Nette\DI\Definitions\Statement;
 
 /**
  * @author Karel Hák <karel.hak@fregis.cz>
@@ -19,7 +20,9 @@ use Nette\PhpGenerator as Code;
 class EventsExtension extends Events\DI\EventsExtension
 {
 	protected function bindEventProperties(Nette\DI\Definitions\Definition $def, \ReflectionClass $class)
-	{		
+	{
+		/** @var \Nette\DI\Definitions\ServiceDefinition $def */
+		$def = $def instanceof FactoryDefinition ? $def->getResultDefinition() : $def;
 		foreach ($class->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
 			if (!preg_match('#^on[A-Z]#', $name = $property->getName())) {
 				continue 1;
@@ -30,10 +33,9 @@ class EventsExtension extends Events\DI\EventsExtension
 			do {
 				$currentClassName = $currentClass->getName();
 				if(!$currentClass->isAbstract()) {
-					$def->addSetup('$' . $name, array(
-						new Nette\DI\Statement($this->prefix('@manager') . '::createEvent', array(
-							array($currentClassName, $name),
-							new Code\PhpLiteral('$service->' . $name)
+					$def->addSetup('$' . $name . '[]', array(
+						new Statement($this->prefix('@manager') . '::createEvent', array(
+							array($currentClassName, $name)
 						))
 					));
 				}
